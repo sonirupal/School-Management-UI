@@ -1,0 +1,99 @@
+<div class="container mt-4">
+    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="row g-3">
+  
+      <!-- Full Name -->
+      <div class="col-md-6">
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-control" formControlName="fullname">
+        <div class="text-danger" *ngIf="studentForm.get('fullname')?.touched && studentForm.get('fullname')?.hasError('required')">
+          Name cannot be null
+        </div>
+      </div>
+  
+      <!-- Email -->
+      <div class="col-md-6">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" formControlName="email">
+        <div class="text-danger" *ngIf="studentForm.get('email')?.touched">
+          <span *ngIf="studentForm.get('email')?.hasError('required')">Email cannot be null</span>
+          <span *ngIf="studentForm.get('email')?.hasError('email')">Invalid email format</span>
+        </div>
+      </div>
+  
+      <!-- Phone -->
+      <div class="col-md-6">
+        <label class="form-label">Phone</label>
+        <input type="text" class="form-control" formControlName="phone">
+        <div class="text-danger" *ngIf="studentForm.get('phone')?.touched">
+          <span *ngIf="studentForm.get('phone')?.hasError('required')">Mobile number is required</span>
+          <span *ngIf="studentForm.get('phone')?.hasError('pattern')">Must be 10 digits</span>
+        </div>
+      </div>
+  
+      <!-- Class -->
+      <div class="col-md-6">
+        <label class="form-label">Class</label>
+        <select class="form-select" formControlName="class_id">
+            <option value="">-- Select Class --</option>
+            <option *ngFor="let cls of classOptions" [value]="cls.class_id">
+              {{ cls.class_name }}
+            </option>
+          </select>  <div class="text-danger" *ngIf="studentForm.get('class_id')?.touched && studentForm.get('class_id')?.hasError('required')">
+          Class cannot be null
+        </div>
+      </div>
+  
+      <!-- Address -->
+      <div class="col-md-12">
+        <label class="form-label">Address</label>
+        <textarea class="form-control" formControlName="address"></textarea>
+        <div class="text-danger" *ngIf="studentForm.get('address')?.touched && studentForm.get('address')?.hasError('required')">
+          Address cannot be null
+        </div>
+      </div>
+  
+      <!-- Age -->
+      <div class="col-md-4">
+        <label class="form-label">Age</label>
+        <input type="number" class="form-control" formControlName="age">
+        <div class="text-danger" *ngIf="studentForm.get('age')?.touched">
+          <span *ngIf="studentForm.get('age')?.hasError('required')">Age is required</span>
+          <span *ngIf="studentForm.get('age')?.hasError('min')">Must be at least 3</span>
+        </div>
+      </div>
+  
+      <!-- DOB -->
+      <div class="col-md-4">
+        <label class="form-label">Date of Birth</label>
+        <input type="date" class="form-control" formControlName="dob">
+        <div class="text-danger" *ngIf="studentForm.get('dob')?.touched && studentForm.get('dob')?.hasError('required')">
+          DOB cannot be null
+        </div>
+      </div>
+  
+      <!-- Admission Date -->
+      <div class="col-md-4">
+        <label class="form-label">Admission Date</label>
+        <input type="date" class="form-control" formControlName="admissionDate">
+        <div class="text-danger" *ngIf="studentForm.get('admissionDate')?.touched && studentForm.get('admissionDate')?.hasError('required')">
+          Admission Date cannot be null
+        </div>
+      </div>
+  
+      <!-- Admission Fee -->
+      <div class="col-md-6">
+        <label class="form-label">Admission Fee</label>
+        <input type="number" class="form-control" formControlName="admissionFee">
+        <div class="text-danger" *ngIf="studentForm.get('admissionFee')?.touched">
+          <span *ngIf="studentForm.get('admissionFee')?.hasError('required')">Fee is required</span>
+          <span *ngIf="studentForm.get('admissionFee')?.hasError('min')">Must be at least 5000</span>
+        </div>
+      </div>
+  
+      <!-- Submit -->
+      <div class="col-12">
+        <button class="btn btn-primary" type="submit" [disabled]="studentForm.invalid">Submit</button>
+      </div>
+    </form>
+  </div>
+  

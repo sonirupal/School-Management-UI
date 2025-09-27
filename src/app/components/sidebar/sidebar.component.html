@@ -1,0 +1,9 @@
+<div class="logo">
+    Learner's Academy
+</div>
+ <ng-container  *ngFor="let items of data">
+    <div class="nav-items"  [routerLink]="items.menuname" (click)="sendTitleValue(items.menuname)" >
+            {{items.menuname}}
+    </div>
+</ng-container> 
+

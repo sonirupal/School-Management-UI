@@ -1,0 +1,114 @@
+<div class="container mt-4">
+    <form [formGroup]="teacherForm" (ngSubmit)="onSubmit()">
+  
+      <!-- Teacher Info -->
+      <div class="card p-3 mb-3">
+        <h5>Teacher Info</h5>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Full Name</label>
+            <input class="form-control" formControlName="fullName">
+            <div class="text-danger" *ngIf="teacherForm.get('fullName')?.touched && teacherForm.get('fullName')?.invalid">
+              Name is required
+            </div>
+          </div>
+  
+          <div class="col-md-6 mb-3">
+            <label>Email</label>
+            <input class="form-control" formControlName="email">
+            <div class="text-danger" *ngIf="teacherForm.get('email')?.touched && teacherForm.get('email')?.invalid">
+              Invalid email
+            </div>
+          </div>
+  
+          <div class="col-md-6 mb-3">
+            <label>Mobile No</label>
+            <input class="form-control" formControlName="mobNo">
+            <div class="text-danger" *ngIf="teacherForm.get('mobNo')?.invalid && teacherForm.get('mobNo')?.touched">
+              Must be 10 digits
+            </div>
+          </div>
+  
+          <div class="col-md-3 mb-3">
+            <label>Age</label>
+            <input type="number" class="form-control" formControlName="age">
+          </div>
+  
+          <div class="col-md-3 mb-3">
+            <label>Gender</label>
+            <select class="form-select" formControlName="gender">
+              <option value="">Select</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+  
+          <div class="col-md-3 mb-3">
+            <label>Total Experience (Years)</label>
+            <input type="number" class="form-control" formControlName="totalExperience">
+          </div>
+        </div>
+      </div>
+  
+      <!-- Degree -->
+      <div class="card p-3 mb-3">
+        <h5>Degrees</h5>
+        <div formArrayName="degree">
+          <div *ngFor="let d of degree.controls; let i=index" class="d-flex mb-2">
+            <input class="form-control me-2" [formControlName]="i">
+            <button type="button" class="btn btn-danger btn-sm" (click)="removeDegree(i)">Remove</button>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary btn-sm" (click)="addDegree()">+ Add Degree</button>
+      </div>
+  
+      <!-- Subject -->
+      <div class="card p-3 mb-3">
+        <h5>Subjects</h5>
+        <div formArrayName="subject">
+          <div *ngFor="let s of subject.controls; let i=index" class="d-flex mb-2">
+            <input class="form-control me-2" [formControlName]="i">
+            <button type="button" class="btn btn-danger btn-sm" (click)="removeSubject(i)">Remove</button>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary btn-sm" (click)="addSubject()">+ Add Subject</button>
+      </div>
+  
+      <!-- Address -->
+      <div class="card p-3 mb-3">
+        <h5>Addresses</h5>
+        <div formArrayName="address">
+          <div *ngFor="let addr of address.controls; let i=index" [formGroupName]="i" class="border p-2 mb-2">
+            <input placeholder="House No" class="form-control mb-2" formControlName="houseNo">
+            <input placeholder="Street" class="form-control mb-2" formControlName="street">
+            <input placeholder="Area" class="form-control mb-2" formControlName="area">
+            <input placeholder="Landmark" class="form-control mb-2" formControlName="landmark">
+            <input placeholder="City" class="form-control mb-2" formControlName="city">
+            <input placeholder="State" class="form-control mb-2" formControlName="state">
+            <input placeholder="Pincode" class="form-control mb-2" formControlName="pincode">
+            <button type="button" class="btn btn-danger btn-sm" (click)="removeAddress(i)">Remove</button>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary btn-sm" (click)="addAddress()">+ Add Address</button>
+      </div>
+  
+      <!-- Experience -->
+      <div class="card p-3 mb-3">
+        <h5>Experience</h5>
+        <div formArrayName="experience">
+          <div *ngFor="let exp of experience.controls; let i=index" [formGroupName]="i" class="border p-2 mb-2">
+            <input placeholder="School Name" class="form-control mb-2" formControlName="schoolName">
+            <input placeholder="Years" type="number" class="form-control mb-2" formControlName="totalExperience">
+            <input placeholder="Location" class="form-control mb-2" formControlName="location">
+            <button type="button" class="btn btn-danger btn-sm" (click)="removeExperience(i)">Remove</button>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary btn-sm" (click)="addExperience()">+ Add Experience</button>
+      </div>
+  
+      <!-- Submit -->
+      <button class="btn btn-success" type="submit">Submit</button>
+    </form>
+  </div>
+  

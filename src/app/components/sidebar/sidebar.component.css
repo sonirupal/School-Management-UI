@@ -1,0 +1,16 @@
+.nav-items{
+    padding: 20px;
+    border-bottom: 1px solid white;
+    text-align: center;
+   
+}
+
+.logo{
+  
+    color: white;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 12px;
+    font-size: 20px;
+    margin-top: 24px;
+}
